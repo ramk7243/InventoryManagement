@@ -1,0 +1,40 @@
+server:
+   port: 8081
+   
+spring:
+   logging:
+    level:
+      ROOT: TRACE
+   application:
+      name: Inventory Management
+   jpa:
+      database: POSTGRESQL
+      hibernate.ddl-auto: null
+      show-sql: true
+      properties:
+         jdbc:
+            lob: null
+            non_contextual_creation: true
+         temp:
+            use_jdbc_metadata_defaults: false
+   datasource:
+      platform: postgres
+      driverClassName: org.postgresql.Driver
+      url: jdbc:postgresql://localhost:5432/demo_inventory?escapeSyntaxCallMode=callIfNoReturn
+      username: postgres
+      password: Test
+      hikari:
+         connectionTimeout: 60000 #Max No. Of Millis that a client will wait for a connection.
+         minimumIdle: 1 #Min. No of idle connection maintained by HikariCP in a connection pool.
+         maxumumPoolSize: 30 #Max Pool Size.
+         idle-timeout: 10000 #Max Idle Timeout for connection.
+         maxLifeTime: 1800000 #Max Lifetime in Millis of a connection in the pool after it is closed.
+         poolName: inventory-management-pool
+         leak-detection-threshold: 3000000
+         validationQuery: SELECT 1
+   main:
+      alllow-been-definition-overriding: true
+security:
+   token:
+      secret: 3le2dsa6GZBtvw9PmK54ZK0cNEzMOYSe7iiXAs8cAdk5nSKiFOHS0dx6ozoMeDK
+      maxAgeSeconds: 86400
